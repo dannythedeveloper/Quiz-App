@@ -29,3 +29,10 @@ body {
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+@media all and (min-width: 800px) {
+  .mainPage {
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
