@@ -15,11 +15,10 @@
 
 h1 {
   font-family: CenturyStd-BookCondensed;
-  font-size: 50px;
+  font-size: 60px;
   margin-bottom: 0;
   padding: 5px;
   color: #ffff3e;
-
 }
 
 h2 {
@@ -27,16 +26,16 @@ h2 {
 }
 
 body {
-    text-align: center;
-    background-image: linear-gradient(to bottom, #10105f, #fff);
-    background-repeat: no-repeat;
-    font-size: 75%;
-    color: #fff;
+  text-align: center;
+  background-image: linear-gradient(to bottom, #10105f, #fff);
+  background-repeat: no-repeat;
+  font-size: 75%;
+  color: #fff;
 }  
 
 .mainPage {
   max-width: 600px;
-  margin: 20px 25px 200px 25px;
+  margin: 20px 25px 0px 25px;
   border: 1px solid #808080;
   justify-content: center;
   padding: 20px 0px;
@@ -47,7 +46,6 @@ body {
 }
 
 .question {
-  display: block;
   color: grey;
 }
 
@@ -82,11 +80,12 @@ img {
 */
 @media all and (min-width: 800px) {
   h1 {
-    font-size: 70px;
+    font-size: 80px;
   }
   .mainPage {
     justify-content: center;
     margin-right: auto;
+    margin-bottom: 50px;
     margin-left: auto;
     font-size: 12px;
   }
