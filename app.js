@@ -174,7 +174,10 @@ function generateIncorrectPage() {
 
 //final page
 function generateFinalPage() {
-  return `<section id="finalPage"><div id="resultsPage" class="mainPage">
+  let finalScore = store.score;
+  let finalIncorrect = store.incorrect;
+  if (finalScore > finalIncorrect) {
+    return `<section id="finalPage"><div id="resultsPage" class="mainPage">
   <h2>Let's see how you did:</h2>
   <p>You got ${store.score} out of ${store.questions.length} correct!</p>
   <br>
@@ -184,6 +187,18 @@ function generateFinalPage() {
   <br>
   <button id="startOver" name="startOver" class="button">Start Over</button>
   </div></section>`;
+  } else {
+    return `<section id="finalPage"><div id="resultsPage" class="mainPage">
+    <h2>Let's see how you did:</h2>
+    <p>You got ${store.score} out of ${store.questions.length} correct!</p>
+    <br>
+    <div class="reactionImage">
+    <img src="https://media.giphy.com/media/hglidpvpLFzzO/giphy.gif" alt="Kevin dropping grocery bags">
+    </div>
+    <br>
+    <button id="startOver" name="startOver" class="button">Start Over</button>
+    </div></section>`;
+  }
 }
 
 /********** RENDER FUNCTION(S) **********/
@@ -223,7 +238,7 @@ function handleStartQuiz() {
 // handles click on Continue to check answer
 // compares user answer to answer key and returns appropiate feedback page
 function handleCheckAnswer() {
-  $('main').on('submit', '#questionForm', function(event) {
+  $('main').on('submit', '#questionForm', function (event) {
     event.preventDefault();
     let selectedAnswer = $('input[type="radio"]:checked').val();
     console.log(selectedAnswer);
@@ -237,12 +252,12 @@ function handleCheckAnswer() {
       let feedback = generateIncorrectPage();
       $('main').html(feedback);
     }
-  }); 
+  });
 }
 
 // handles click on next to move onto next question
 function handleClickNext() {
-  $('main').on('click', '#next', function(event) {
+  $('main').on('click', '#next', function (event) {
     store.questionNumber++;
     console.log(store.questionNumber);
     render();
@@ -251,7 +266,7 @@ function handleClickNext() {
 
 // handles click on start over, and resets quiz to begin again
 function handleStartOver() {
-  $('main').on('click', '#startOver', function(event) {
+  $('main').on('click', '#startOver', function (event) {
     store.quizStarted = false;
     store.questionNumber = 0;
     store.score = 0;
