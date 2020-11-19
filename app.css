@@ -30,7 +30,7 @@ body {
     text-align: center;
     background-image: linear-gradient(to bottom, #10105f, #fff);
     background-repeat: no-repeat;
-    font-size: 60%;
+    font-size: 75%;
     color: #fff;
 }  
 
@@ -59,21 +59,18 @@ img {
 
 .button {
   font-family: LithosPro-Black;
-  font-size: 60%;
+  font-size: 80%;
   padding: 5px;
   display: inline-block;
   background-color: #8d0d0d;
+  color: #ffffff;
   text-decoration: none;
 }
 
-.button:hover {
-  background-color: #ffffff;
-  color: 
-}
 
 .answerChoices {
   text-align: left;
-  padding-left: 50px;
+  padding-left: 20px;
   padding-bottom: 10px;
 }
 
@@ -95,7 +92,7 @@ img {
   }
 
   .answerChoices {
-    padding-left: 200px;
+    padding-left: 210px;
   }
 
   img {
@@ -104,5 +101,9 @@ img {
 
   .button {
     font-size: 12px;
+  }
+
+  .button:hover {
+    color: #ffffff;
   }
 }
