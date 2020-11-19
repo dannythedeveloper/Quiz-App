@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-undef */
 'use strict';
 /**
  * Example store structure
@@ -78,7 +80,8 @@ const store = {
 
   quizStarted: false,
   questionNumber: 0,
-  score: 0
+  score: 0,
+  incorrect: 0
 };
 
 /**
@@ -100,10 +103,171 @@ const store = {
 
 // These functions return HTML templates
 
+// starting page
+function generateStartPage() {
+  return `<section id="startPage"><div class="mainPage">
+  <h2>How well do you know "Home Alone?"</h2>
+  <p>Find out how well you know the Christmas classic!</p>
+  <div class="reactionImage" id="mainPageImage">
+  <img src="https://media.giphy.com/media/115GePH0Iri8QE/giphy.gif" alt="Keving raising eyebrows">
+  </div><br>
+  <button id="startQuiz" class="button">Begin</button>
+</div></section>`;
+}
+
+// question page
+function generateQuestionPage() {
+  let question = store.questions[store.questionNumber];
+  let answers = question.answers.map((answer, index) => {
+    if (index === 0) {
+      return `<input type="radio" id="answer${index}" name="answer" value="${answer}" required />
+    <label for="answer${index}">${answer}</label><br>`;
+    }
+    return `<input type="radio" id="answer${index}" name="answer" value="${answer}" />
+      <label for="answer${index}">${answer}</label><br>`;
+  });
+  return `<section id="questionPage"><div id="questionPage" class="mainPage">
+    <form id="questionForm">
+    <p>${store.questionNumber + 1} out of ${store.questions.length}</p>
+    <h2>${question.question}</h2>
+    <div class="answerChoices">
+    ${answers.join('')}
+    </div>
+    <br><button type="submit" id="submitAnswer" name="submitAnswer" class="button">Continue</button>
+    </form>
+    <span id="currentScore" class="score">
+    <p>Correct: ${store.score}</p>
+    <p>Incorrect: ${store.incorrect}</p>
+    </span>  
+    </div></section>`;
+}
+
+//correct answer page
+function generateCorrectPage() {
+  return `<section id="correctPage"><div id="correctAnswer" class="mainPage">
+    <h2>Correct! Great job!</h2>
+    <div class="reactionImage">
+      <img src="https://media.giphy.com/media/1iTJct5JuplfCwFO/giphy.gif" alt="Kevin cheering">
+    </div>
+    <span id="currentScore" class="score">
+      <p>Correct: ${store.score}</p>
+      <p>Incorrect: ${store.incorrect}</p>
+    </span>
+    <button type="submit" id="next" name="next" class="button">Next</button>
+  </div></section>`;
+}
+
+//incorrect answer page
+function generateIncorrectPage() {
+  return `<section id="incorrectPage"><div id="incorrectAnswer" class="mainPage">
+    <h2>Oh no! The correct answer is: ${store.questions[store.questionNumber].correctAnswer}</h2>
+    <div class="reactionImage">
+      <img src="https://media.giphy.com/media/p092OM3vVCXII/giphy.gif" alt="Kevin screaming">
+    </div>
+    <span id="currentScore" class="score">
+      <p>Correct: ${store.score}</p>
+      <p>Incorrect: ${store.incorrect}</p>
+    </span>
+    <button type="submit" id="next" name="next" class="button">Next</button>
+  </div></section>`;
+}
+
+//final page
+function generateFinalPage() {
+  return `<section id="finalPage"><div id="resultsPage" class="mainPage">
+  <h2>Let's see how you did:</h2>
+  <p>You got ${store.score} out of ${store.questions.length} correct!</p>
+  <br>
+  <div class="reactionImage">
+  <img src="https://media.giphy.com/media/26tPaBeEc1XtBx04w/giphy.gif" alt="Kevin jumping on the bed">
+  </div>
+  <br>
+  <button id="startOver" name="startOver" class="button">Start Over</button>
+  </div></section>`;
+}
+
 /********** RENDER FUNCTION(S) **********/
 
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 
+//renders html pages 
+function render() {
+  let html = '';
+  if (store.quizStarted) {
+    if (store.questionNumber === store.questions.length) {
+      html = generateFinalPage();
+    } else {
+      html = generateQuestionPage();
+    }
+  } else {
+    html = generateStartPage();
+
+  }
+
+  $('main').html(html);
+}
+
+
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
+
+// handles click on start quiz and renders the question page
+function handleStartQuiz() {
+  $('main').on('click', '#startQuiz', function (event) {
+    store.quizStarted = true;
+    render();
+  });
+}
+
+// handles click on Continue to check answer
+// compares user answer to answer key and returns appropiate feedback page
+function handleCheckAnswer() {
+  $('main').on('submit', '#questionForm', function(event) {
+    event.preventDefault();
+    let selectedAnswer = $('input[type="radio"]:checked').val();
+    console.log(selectedAnswer);
+    let answerKey = store.questions[store.questionNumber].correctAnswer;
+    if (selectedAnswer === answerKey) {
+      store.score++;
+      let feedback = generateCorrectPage();
+      $('main').html(feedback);
+    } else {
+      store.incorrect++;
+      let feedback = generateIncorrectPage();
+      $('main').html(feedback);
+    }
+  }); 
+}
+
+// handles click on next to move onto next question
+function handleClickNext() {
+  $('main').on('click', '#next', function(event) {
+    store.questionNumber++;
+    console.log(store.questionNumber);
+    render();
+  });
+}
+
+// handles click on start over, and resets quiz to begin again
+function handleStartOver() {
+  $('main').on('click', '#startOver', function(event) {
+    store.quizStarted = false;
+    store.questionNumber = 0;
+    store.score = 0;
+    store.incorrect = 0;
+    render();
+  });
+}
+
+// runs all functions on page
+function handleQuiz() {
+  render();
+  handleStartQuiz();
+  handleCheckAnswer();
+  handleClickNext();
+  handleStartOver();
+}
+
+
+$(handleQuiz);

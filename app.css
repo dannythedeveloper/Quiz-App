@@ -1,28 +1,80 @@
 /* Your styles should be mobile-first and responsive */
-* {
-  box-sizing: border-box;
+@font-face {
+  font-family: CenturyStd-BookCondensed;
+  src: url('fonts/CenturyStd-BookCondensed.otf');
+}
+@font-face {
+  font-family: LithosPro-Black;
+  src: url('fonts/LithosPro-Black.otf')
 }
 
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    background-image: linear-gradient(to bottom, #0c703e, #42a0f1);
-  }
+* {
+  box-sizing: border-box;
+  font-family: LithosPro-Black;
+}
 
+h1 {
+  font-family: CenturyStd-BookCondensed;
+  font-size: 50px;
+  margin-bottom: 0;
+  padding: 5px;
+  color: #ffff3e;
+
+}
+
+h2 {
+  margin: 20px;
+}
+
+body {
+    text-align: center;
+    background-image: linear-gradient(to bottom, #10105f, #fff);
+    background-repeat: no-repeat;
+    font-size: 60%;
+    color: #fff;
+}  
 
 .mainPage {
   max-width: 600px;
-  margin: 20px 50px;
-  border: 1px solid grey;
+  margin: 20px 25px 200px 25px;
+  border: 1px solid #808080;
   justify-content: center;
-  padding: 20px;
+  padding: 20px 0px;
+  background-color: #083a08;
+  border-radius: 10px;
+  box-shadow: 2px 2px #888888;
 
 }
 
 .question {
   display: block;
   color: grey;
+}
 
+img {
+  width: 175px;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.button {
+  font-family: LithosPro-Black;
+  font-size: 60%;
+  padding: 5px;
+  display: inline-block;
+  background-color: #8d0d0d;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: #ffffff;
+  color: 
+}
+
+.answerChoices {
+  text-align: left;
+  padding-left: 50px;
+  padding-bottom: 10px;
 }
 
 /** 
@@ -32,9 +84,25 @@
   *
 */
 @media all and (min-width: 800px) {
+  h1 {
+    font-size: 70px;
+  }
   .mainPage {
     justify-content: center;
     margin-right: auto;
     margin-left: auto;
+    font-size: 12px;
+  }
+
+  .answerChoices {
+    padding-left: 200px;
+  }
+
+  img {
+    width: 400px;
+  }
+
+  .button {
+    font-size: 12px;
   }
 }
