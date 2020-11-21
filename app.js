@@ -7,75 +7,75 @@
 const store = {
   // 5 or more questions are required
   questions: [{
-    question: 'Why can\'t Kevin make ornaments out of the old fishhooks?',
-    answers: [
-      'He can\'t find them.',
-      'They are not the right type.',
-      'They have worm guts on them.',
-      'He ran out of hot glue.'
-    ],
-    correctAnswer: 'They have worm guts on them.'
-  },
-  {
-    question: 'How old is Kevin?',
-    answers: [
-      '8',
-      '9',
-      '10',
-      '11'
-    ],
-    correctAnswer: '8'
-  },
-  {
-    question: 'What is the name of the pizza company that delivers the pizzas to Kevin and his family?',
-    answers: [
-      'Little Mario\'s',
-      'Little Nero\'s',
-      'Little Caesars',
-      'Little Marco\'s'
-    ],
-    correctAnswer: 'Little Nero\'s'
-  },
-  {
-    question: 'What is not one of the things that Kevin tells the family he picked up at the grocery store?',
-    answers: [
-      'Eggs',
-      'Milk',
-      'Bread',
-      'Fabric Softner'
-    ],
-    correctAnswer: 'Bread'
-  },
-  {
-    question: 'When the MaCallister\'s were in France, what Christmas classic were they watching on tv?',
-    answers: [
-      'The Santa Clause',
-      'Angels with Filthy Souls',
-      'It\'s a Wonderful Life',
-      'A Christmas Story'
-    ],
-    correctAnswer: 'It\'s a Wonderful Life'
-  },
-  {
-    question: 'What time is the family leaving the house in the morning according to Uncle Frank?',
-    answers: [
-      '6am',
-      '7am',
-      '8am',
-      '10am'
-    ],
-    correctAnswer: '8am'
-  },
-  {
-    question: 'Who gets mistaken for Kevin during the headcount?',
-    answers: [
-      'Marley Merchants',
-      'Gus Polinski',
-      'Harry Lime',
-      'Mitch Murphy'
-    ],
-    correctAnswer: 'Mitch Murphy'
-  }
+      question: 'Why can\'t Kevin make ornaments out of the old fishhooks?',
+      answers: [
+        'He can\'t find them.',
+        'They are not the right type.',
+        'They have worm guts on them.',
+        'He ran out of hot glue.'
+      ],
+      correctAnswer: 'They have worm guts on them.'
+    },
+    {
+      question: 'How old is Kevin?',
+      answers: [
+        '8',
+        '9',
+        '10',
+        '11'
+      ],
+      correctAnswer: '8'
+    },
+    {
+      question: 'What is the name of the pizza company that delivers the pizzas to Kevin and his family?',
+      answers: [
+        'Little Mario\'s',
+        'Little Nero\'s',
+        'Little Caesars',
+        'Little Marco\'s'
+      ],
+      correctAnswer: 'Little Nero\'s'
+    },
+    {
+      question: 'What is not one of the things that Kevin tells the family he picked up at the grocery store?',
+      answers: [
+        'Eggs',
+        'Milk',
+        'Bread',
+        'Fabric Softner'
+      ],
+      correctAnswer: 'Bread'
+    },
+    {
+      question: 'When the MaCallister\'s were in France, what Christmas classic were they watching on tv?',
+      answers: [
+        'The Santa Clause',
+        'Angels with Filthy Souls',
+        'It\'s a Wonderful Life',
+        'A Christmas Story'
+      ],
+      correctAnswer: 'It\'s a Wonderful Life'
+    },
+    {
+      question: 'What time is the family leaving the house in the morning according to Uncle Frank?',
+      answers: [
+        '6am',
+        '7am',
+        '8am',
+        '10am'
+      ],
+      correctAnswer: '8am'
+    },
+    {
+      question: 'Who gets mistaken for Kevin during the headcount?',
+      answers: [
+        'Marley Merchants',
+        'Gus Polinski',
+        'Harry Lime',
+        'Mitch Murphy'
+      ],
+      correctAnswer: 'Mitch Murphy'
+    }
   ],
 
   quizStarted: false,
@@ -105,14 +105,14 @@ const store = {
 
 // starting page
 function generateStartPage() {
-  return `<section id="startPage"><div class="mainPage">
+  return `<div class="mainPage">
   <h2>How well do you know "Home Alone?"</h2>
   <p>Find out how well you know the Christmas classic!</p>
   <div class="reactionImage" id="mainPageImage">
   <img src="https://media.giphy.com/media/115GePH0Iri8QE/giphy.gif" alt="Keving raising eyebrows">
   </div><br>
   <button id="startQuiz" class="button">Begin</button>
-</div></section>`;
+</div>`;
 }
 
 // question page
@@ -126,10 +126,9 @@ function generateQuestionPage() {
     return `<input type="radio" id="answer${index}" name="answer" value="${answer}" />
       <label for="answer${index}">${answer}</label><br>`;
   });
-  return `<section id="questionPage"><div id="questionPage" class="mainPage">
-    <form id="questionForm">
+  return `<div id="questionPage" class="mainPage">
     <p>${store.questionNumber + 1} out of ${store.questions.length}</p>
-    <h2>${question.question}</h2>
+    <form id="questionForm"><h2>${question.question}</h2>
     <div class="answerChoices">
     ${answers.join('')}
     </div>
@@ -139,12 +138,12 @@ function generateQuestionPage() {
     <p>Correct: ${store.score}</p>
     <p>Incorrect: ${store.incorrect}</p>
     </span>  
-    </div></section>`;
+    </div>`;
 }
 
 //correct answer page
 function generateCorrectPage() {
-  return `<section id="correctPage"><div id="correctAnswer" class="mainPage">
+  return `<div id="correctAnswer" class="mainPage">
     <h2>Correct! Great job!</h2>
     <div class="reactionImage">
       <img src="https://media.giphy.com/media/1iTJct5JuplfCwFO/giphy.gif" alt="Kevin cheering">
@@ -154,12 +153,12 @@ function generateCorrectPage() {
       <p>Incorrect: ${store.incorrect}</p>
     </span>
     <button type="submit" id="next" name="next" class="button">Next</button>
-  </div></section>`;
+  </div>`;
 }
 
 //incorrect answer page
 function generateIncorrectPage() {
-  return `<section id="incorrectPage"><div id="incorrectAnswer" class="mainPage">
+  return `<div id="incorrectAnswer" class="mainPage">
     <h2>Oh no! The correct answer is: ${store.questions[store.questionNumber].correctAnswer}</h2>
     <div class="reactionImage">
       <img src="https://media.giphy.com/media/p092OM3vVCXII/giphy.gif" alt="Kevin screaming">
@@ -169,7 +168,7 @@ function generateIncorrectPage() {
       <p>Incorrect: ${store.incorrect}</p>
     </span>
     <button type="submit" id="next" name="next" class="button">Next</button>
-  </div></section>`;
+  </div>`;
 }
 
 //final page
@@ -177,7 +176,7 @@ function generateFinalPage() {
   let finalScore = store.score;
   let finalIncorrect = store.incorrect;
   if (finalScore > finalIncorrect) {
-    return `<section id="finalPage"><div id="resultsPage" class="mainPage">
+    return `<div id="resultsPage" class="mainPage">
   <h2>Let's see how you did:</h2>
   <p>You got ${store.score} out of ${store.questions.length} correct!</p>
   <br>
@@ -186,9 +185,9 @@ function generateFinalPage() {
   </div>
   <br>
   <button id="startOver" name="startOver" class="button">Start Over</button>
-  </div></section>`;
+  </div>`;
   } else {
-    return `<section id="finalPage"><div id="resultsPage" class="mainPage">
+    return `<div id="resultsPage" class="mainPage">
     <h2>Let's see how you did:</h2>
     <p>You got ${store.score} out of ${store.questions.length} correct!</p>
     <br>
@@ -197,7 +196,7 @@ function generateFinalPage() {
     </div>
     <br>
     <button id="startOver" name="startOver" class="button">Start Over</button>
-    </div></section>`;
+    </div>`;
   }
 }
 
@@ -206,19 +205,24 @@ function generateFinalPage() {
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 
 //renders html pages 
-function render() {
+function render(quizPage) {
   let html = '';
-  if (store.quizStarted) {
-    if (store.questionNumber === store.questions.length) {
+  switch (quizPage) {
+    case "startPage":
+      html = generateStartPage();
+      break;
+    case "correctPage":
+      html = generateCorrectPage();
+      break;
+    case "incorrectPage":
+      html = generateIncorrectPage();
+      break;
+    case "finalPage":
       html = generateFinalPage();
-    } else {
-      html = generateQuestionPage();
-    }
-  } else {
-    html = generateStartPage();
-
+      break;
+    default:
+        html = generateQuestionPage();
   }
-
   $('main').html(html);
 }
 
@@ -231,7 +235,7 @@ function render() {
 function handleStartQuiz() {
   $('main').on('click', '#startQuiz', function (event) {
     store.quizStarted = true;
-    render();
+    $(render);
   });
 }
 
@@ -245,12 +249,10 @@ function handleCheckAnswer() {
     let answerKey = store.questions[store.questionNumber].correctAnswer;
     if (selectedAnswer === answerKey) {
       store.score++;
-      let feedback = generateCorrectPage();
-      $('main').html(feedback);
+      render("correctPage")
     } else {
       store.incorrect++;
-      let feedback = generateIncorrectPage();
-      $('main').html(feedback);
+      render("incorrectPage")
     }
   });
 }
@@ -259,8 +261,11 @@ function handleCheckAnswer() {
 function handleClickNext() {
   $('main').on('click', '#next', function (event) {
     store.questionNumber++;
-    console.log(store.questionNumber);
-    render();
+    if (store.questionNumber === store.questions.length) {
+      render("finalPage");
+      } else {
+        render()
+      }
   });
 }
 
@@ -271,13 +276,13 @@ function handleStartOver() {
     store.questionNumber = 0;
     store.score = 0;
     store.incorrect = 0;
-    render();
+    render("startPage");
   });
 }
 
 // runs all functions on page
 function handleQuiz() {
-  render();
+  render("startPage");
   handleStartQuiz();
   handleCheckAnswer();
   handleClickNext();
