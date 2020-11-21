@@ -27,7 +27,7 @@ h2 {
 
 body {
   text-align: center;
-  background-image: linear-gradient(to bottom, #10105f, #fff);
+  background-image: linear-gradient(to bottom, #10105f 40%, #fff);
   background-repeat: no-repeat;
   font-size: 75%;
   color: #fff;
