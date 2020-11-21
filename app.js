@@ -130,7 +130,9 @@ function generateQuestionPage() {
     <p>${store.questionNumber + 1} out of ${store.questions.length}</p>
     <h2>${question.question}</h2>
     <form id="questionForm">
+    <div class="answerChoices">
     ${answers.join('')}
+    </div>
     <br><button type="submit" id="submitAnswer" name="submitAnswer" class="button questionButton">Continue</button>
     </form>
     <span id="currentScore" class="score">
