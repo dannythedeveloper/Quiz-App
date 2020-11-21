@@ -128,11 +128,10 @@ function generateQuestionPage() {
   });
   return `<div id="questionPage" class="mainPage">
     <p>${store.questionNumber + 1} out of ${store.questions.length}</p>
-    <form id="questionForm"><h2>${question.question}</h2>
-    <div class="answerChoices">
+    <h2>${question.question}</h2>
+    <form id="questionForm">
     ${answers.join('')}
-    </div>
-    <br><button type="submit" id="submitAnswer" name="submitAnswer" class="button">Continue</button>
+    <br><button type="submit" id="submitAnswer" name="submitAnswer" class="button questionButton">Continue</button>
     </form>
     <span id="currentScore" class="score">
     <p>Correct: ${store.score}</p>
