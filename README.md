@@ -2,4 +2,4 @@
 
 https://dannythedeveloper.github.io/Quiz-App/
 
-Web application that runs a quiz on Christmas classic "Home Alone"
+Web application that uses JavaScript, and jQuery to run a quiz on Christmas classic "Home Alone"
