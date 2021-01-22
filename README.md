@@ -1,4 +1,4 @@
-##Home Alone Quiz App##
+# Home Alone Quiz App
 
 https://dannythedeveloper.github.io/Quiz-App/
 
